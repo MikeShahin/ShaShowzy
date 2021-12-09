@@ -1,0 +1,25 @@
+<h2><%= @show.name %></h2>
+
+<h4>Date: <%=@show.date %> <br> Time: <%=@show.time %> <br> Location: <%=@show.location %></h4> 
+<br>
+<h4>Description:</h4>
+<p><%=@show.description %></p>
+
+<% if logged_in? && @show.user == current_user %>
+    <a href="/shows"><img src="/images/back.png"></a>
+    <br>
+    <br>
+    <a href="/shows/<%=@show.id%>/edit"><img src="/images/edit.png"></a>
+    <br>
+    <br>
+    <a href=""><form action="/shows/<%=@show.id%>/delete" method="POST">
+        <input type="hidden" name="_method" value="delete" id="hidden">
+        <input type="submit"  class="delete">
+    </form></a>
+    <br>
+
+<% else %>
+    <a href="/shows"><img src="/images/back.png"></a>
+    <br>
+    <br>
+<% end %>
