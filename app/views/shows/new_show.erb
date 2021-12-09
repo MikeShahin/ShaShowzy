@@ -1,12 +1,7 @@
-<head>
-<link rel="stylesheet" href="stylesheets/two.css" />
-</head>
+<h1>Tell us about your show!</h1>
 
-<h3>Edit Event:</h3>
-
-<form action="/protests/<%=@protest.id%>" method="post">
-    <input type="hidden" name="_method" id="hidden" value="PATCH">
-    <label for="name">Protest name: </label>
+<form action="/shows" method="post">
+    <label for="name">show name: </label>
     <br>
     <input type="text" name="name" placeholder="name">
     <br>
@@ -23,7 +18,7 @@
     <br>
     <label for="date">Date: </label>
     <br>
-    <input type="date" id="protestdate" name="date" min="2020-11-01" max="2100-12-31">
+    <input type="date" id="showdate" name="date" min="2020-11-01" max="2100-12-31">
     <br>
     <br>
     <label for="time">Time: </label>
@@ -35,4 +30,6 @@
     <br>
     <br>
     <a href="/"><img src="/images/home.png"></a>
+
+
 </form>
