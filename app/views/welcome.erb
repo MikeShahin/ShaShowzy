@@ -5,23 +5,23 @@
       <h3>Welcome Back <%= @user.username %>!</h3>
     <% end %>
     <br>
-    <h2>Protest Tracker: Track Protests Globally!</h2>
+    <h2>show Tracker: Track shows in the Bay Area!!</h2>
 
     <% if logged_in? %>
       <a href="/dashboard"><img src="/images/dashboard.png"></a>
       <br>
       <br>
-      <a href="/protests"><img src="/images/protests.png"></a>
+      <a href="/shows"><img src="/images/shows.png"></a>
       <br>
       <br>
-      <a href="/protests/new"><img src="/images/new.png"></a>
+      <a href="/shows/new"><img src="/images/new.png"></a>
       <br>
       <br>
       <form action="/logout" method="post">
         <input type="submit" name="logout" class="logout">
       </form>
     <% else %>
-      <a href="/protests"><img src="/images/protests.png"></a>
+      <a href="/shows"><img src="/images/shows.png"></a>
       <br>
       <br>
       <a href="/login"><img src="/images/login.png"></a>
