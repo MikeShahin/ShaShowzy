@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect to '/protests'
+      redirect to '/shows'
     end
   end
 
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   get '/dashboard' do
     @user = User.find_by(id: session[:user_id])
-    @protests = Protest.where(:user_id => session[:user_id])
+    @shows = show.where(:user_id => session[:user_id])
     if logged_in?
       erb :'users/dashboard'
     else 
