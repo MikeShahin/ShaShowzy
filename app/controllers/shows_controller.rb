@@ -1,4 +1,4 @@
-class showsController < ApplicationController
+class ShowsController < ApplicationController
 
   get "/shows" do
     @shows = show.all.sort_by {|p| p.date }
