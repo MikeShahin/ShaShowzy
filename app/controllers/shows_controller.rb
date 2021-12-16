@@ -1,30 +1,30 @@
-class ProtestsController < ApplicationController
+class showsController < ApplicationController
 
-  get "/protests" do
-    @protests = Protest.all.sort_by {|p| p.date }
-    erb :"/protests/show"
+  get "/shows" do
+    @shows = show.all.sort_by {|p| p.date }
+    erb :"/shows/show"
   end
 
-  get "/protests/new" do
+  get "/shows/new" do
     if logged_in?
-      erb :'protests/new_protest'
+      erb :'shows/new_show'
     else 
       redirect to '/login'
     end
   end
 
-  post '/protests' do
+  post '/shows' do
     if logged_in?
       if empty_fields?
         flash[:error] = "Please fill out all the fields"
-        redirect to '/protests/new'
+        redirect to '/shows/new'
       else
-        @protest = current_user.protests.build(name: params[:name], location: params[:location], description: params[:description], date: params[:date], time: params[:time])
-        if @protest.save
-          redirect to "/protests/#{@protest.id}"
+        @show = current_user.shows.build(name: params[:name], location: params[:location], description: params[:description], date: params[:date], time: params[:time])
+        if @show.save
+          redirect to "/shows/#{@show.id}"
         else
           flash[:error] = "Sorry something went wrong! Try again"
-          redirect to '/protests/new'
+          redirect to '/shows/new'
         end
       end
     else
@@ -32,19 +32,19 @@ class ProtestsController < ApplicationController
     end
   end
 
-  get '/protests/:id' do
-    find_protest
-      erb :'protests/show_protest'
+  get '/shows/:id' do
+    find_show
+      erb :'shows/show_show'
   end
 
-  get '/protests/:id/edit' do
+  get '/shows/:id/edit' do
     if logged_in?
-      find_protest
-      if @protest && @protest.user == current_user
-        erb :'protests/edit'
+      find_show
+      if @show && @show.user == current_user
+        erb :'shows/edit'
       else
         flash[:error] = "Sorry, you do not have permission to edit this event"
-        redirect to '/protests'
+        redirect to '/shows'
       end
     else
       flash[:error] = "Please login to edit this event"
@@ -52,44 +52,42 @@ class ProtestsController < ApplicationController
     end
   end
 
-  patch '/protests/:id' do
+  patch '/shows/:id' do
     not_logged_in
     
       if empty_fields?
         flash[:error] = "Please fill out all fields"
-        redirect to "/protests/#{params[:id]}/edit"
+        redirect to "/shows/#{params[:id]}/edit"
       else
-        find_protest
-        if @protest && @protest.user == current_user
-          if @protest.update(name: params[:name], location: params[:location], description: params[:description], date: params[:date], time: params[:time])
-            redirect to "/protests/#{@protest.id}"
+        find_show
+        if @show && @show.user == current_user
+          if @show.update(name: params[:name], location: params[:location], description: params[:description], date: params[:date], time: params[:time])
+            redirect to "/shows/#{@show.id}"
           else
             flash[:error] = "Sorry, something went wrong, please try again"
-            redirect to "/protests/#{@protest.id}/edit"
+            redirect to "/shows/#{@show.id}/edit"
           end
         else
-          redirect to '/protests'
+          redirect to '/shows'
         end
       end
   end
 
-  delete '/protests/:id/delete' do
+  delete '/shows/:id/delete' do
     if logged_in?
-      find_protest
-      if @protest && @protest.user == current_user
-        @protest.delete
+      find_show
+      if @show && @show.user == current_user
+        @show.delete
       end
-      redirect to '/protests'
+      redirect to '/shows'
     else
       redirect to '/login'
     end
   end
 
   private
-  def find_protest
-    @protest = Protest.find_by_id(params[:id])
+  def find_show
+    @show = show.find_by_id(params[:id])
   end
 
 end
-
-#blog on post login process, bcrypt, authenticat, use code examples, technical
