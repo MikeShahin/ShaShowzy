@@ -1,6 +1,6 @@
-class CreateProtests < ActiveRecord::Migration[6.0]
+class Createshows < ActiveRecord::Migration[6.0]
   def change
-    create_table :protests do |t|
+    create_table :shows do |t|
       t.string :name
       t.string :location
       t.string :description
