@@ -5,6 +5,6 @@ require './config/environment'
 # end
 
 use Rack::MethodOverride
-use ProtestsController
+use ShowsController
 use UsersController
 run ApplicationController
