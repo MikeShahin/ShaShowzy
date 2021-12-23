@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2020_11_09_205023) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "shows", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "description"
+    t.string "date"
+    t.string "time"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.text "email"
